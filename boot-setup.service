@@ -1,0 +1,14 @@
+[Unit]
+Description=Unique Device Boot Setup
+Before=NetworkManager.service network.target viam-agent.service
+DefaultDependencies=no
+ConditionPathExists=!/opt/forecr/.boot-setup-marker
+
+[Service]
+Type=oneshot
+ExecStart=/opt/forecr/boot-setup.sh
+RemainAfterExit=true
+TimeoutSec=60
+
+[Install]
+WantedBy=basic.target
